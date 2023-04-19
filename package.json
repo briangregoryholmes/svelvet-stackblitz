@@ -33,6 +33,6 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"svelvet-test": "^7.2.1"
+		"svelvet": "^7.0.1"
 	}
 }

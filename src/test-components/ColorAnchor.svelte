@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { CSSColorString, CustomWritable } from 'svelvet-test';
+	import type { CSSColorString, CustomWritable } from 'svelvet';
 	import type { Writable } from 'svelte/store';
 
 	export let linked: boolean = false;

@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { Node, Anchor } from 'svelvet-test';
-	import { generateInput, generateOutput, type CSSColorString } from 'svelvet-test';
 	import Visualizer from './Visualizer.svelte';
 	import CustomAnchor from './CustomAnchor.svelte';
 	import ColorAnchor from './ColorAnchor.svelte';
+	import { Node, Anchor } from 'svelvet';
+	import { generateInput, generateOutput, type CSSColorString } from 'svelvet';
 
 	type Inputs = {
 		strokeWidth: number;

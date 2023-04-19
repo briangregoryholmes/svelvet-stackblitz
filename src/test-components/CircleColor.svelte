@@ -1,10 +1,9 @@
 <script lang="ts">
-	import { Node, Anchor } from 'svelvet-test';
-	import { generateInput, generateOutput, Resizer } from 'svelvet-test';
 	import NodeWrapper from './NodeWrapper.svelte';
-	import { ColorWheel } from 'svelvet-test';
-	import type { CSSColorString } from 'svelvet-test';
 	import ColorAnchor from './ColorAnchor.svelte';
+	import { generateInput, generateOutput, Resizer, ColorWheel, Node, Anchor } from 'svelvet';
+	import type { CSSColorString } from 'svelvet';
+
 	type Inputs = {
 		color: CSSColorString;
 	};

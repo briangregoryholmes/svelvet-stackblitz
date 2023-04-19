@@ -1,7 +1,6 @@
 <script lang="ts">
-	import { Node } from 'svelvet-test';
-	import { generateInput, generateOutput, Slider } from 'svelvet-test';
 	import NodeWrapper from './NodeWrapper.svelte';
+	import { generateInput, generateOutput, Slider, Node } from 'svelvet';
 
 	type Inputs = {
 		num: number;

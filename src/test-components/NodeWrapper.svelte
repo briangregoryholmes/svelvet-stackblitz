@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Anchor, generateOutput } from 'svelvet-test';
+	import { Anchor, generateOutput } from 'svelvet';
 	import CustomAnchor from './CustomAnchor.svelte';
 
 	export let title: string;

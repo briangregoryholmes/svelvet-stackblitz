@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { Svelvet, type Theme } from 'svelvet-test';
-	import { ThemeToggle, Group } from 'svelvet-test';
+	import { Svelvet, ThemeToggle, Group } from 'svelvet';
+	import type { Theme } from 'svelvet';
 	import Thickness from '../test-components/Thickness.svelte';
 	import Noise from '../test-components/Noise.svelte';
 	import Scale from '../test-components/Scale.svelte';

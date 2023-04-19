@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { generateInput, generateOutput, Slider, Node } from 'svelvet-test';
+	import { generateInput, generateOutput, Slider, Node } from 'svelvet';
 	import NodeWrapper from './NodeWrapper.svelte';
 
 	type Inputs = {
