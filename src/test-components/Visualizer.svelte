@@ -3,9 +3,9 @@
 	export let strokeWidth = 4;
 	export let dashFactor = 5;
 	export let numCircles = 30;
-	export let spacing = 5;
+	export let spacing = 0;
 	export let color = 'red';
-	export let noise = 20; // Add noise parameter
+	export let noise = 0; // Add noise parameter
 
 	interface Circle {
 		cx: number;
@@ -18,13 +18,18 @@
 
 	let circles: Array<Circle> = [];
 	let previousNoiseFactor = 0;
-	let previousNoise = noise;
+	let previousNoise = 0;
 	let dashLength;
 	let gapLength;
+	$: animate = spacing;
 
 	$: {
 		circles = generateCircles(size, strokeWidth, dashFactor, numCircles, spacing, noise);
 	}
+
+	const random = Array(50)
+		.fill(null)
+		.map((_, i) => 1 - Math.random());
 
 	function generateCircles(
 		size: number,
@@ -35,41 +40,33 @@
 		noise: number
 	) {
 		let generatedCircles = [];
-		let radius = strokeWidth / 2;
 
 		for (let i = 0; i < numCircles; i++) {
-			let angle;
+			const noiseFactor = noise * random[i];
+			let radius = size * (i / numCircles) * 2;
+			let angle = 0;
 			let circumference = 2 * Math.PI * radius;
-			dashLength = circumference / dashFactor;
+			dashLength = circumference / dashFactor / 2;
 			gapLength = (circumference - dashLength) / (dashFactor - 1);
 
-			const noiseFactor = Math.random() * (2 * noise) - noise;
-
-			if (previousNoise !== noise) {
-				dashLength += noiseFactor;
-				gapLength -= noiseFactor;
-				angle = noiseFactor * i;
-				previousNoiseFactor = noiseFactor;
-				previousNoise = noise;
-			} else {
-				dashLength += previousNoiseFactor;
-				gapLength -= previousNoiseFactor;
-				angle = previousNoiseFactor * i;
-			}
+			dashLength += random[i] * noise * 5;
+			angle = 1440 * random[i] * noise;
+			// console.log({ angle, noiseFactor, i });
+			strokeWidth += (random[i] * noise) / 2;
 
 			let circle = {
 				cx: size / 2,
 				cy: size / 2,
 				r: radius,
 				strokeWidth: strokeWidth,
-				dashArray: `${dashLength},${gapLength}`,
+				dashArray: `${dashLength},${dashLength}`,
 				angle
 			};
 
 			generatedCircles.push(circle);
 			radius += spacing;
 		}
-
+		previousNoise = noise;
 		return generatedCircles;
 	}
 </script>
@@ -80,11 +77,14 @@
 			cx="50%"
 			cy="50%"
 			r={circle.r}
+			style:--animation-speed={spacing + 's'}
 			stroke={color}
 			style:transform-origin="50% 50%"
+			style:transform={`rotate(${circle.angle}deg)`}
 			fill="none"
 			stroke-width={circle.strokeWidth}
 			stroke-dasharray={circle.dashArray}
+			class:animate
 		/>
 	{/each}
 </svg>
@@ -92,5 +92,16 @@
 <style>
 	svg {
 		pointer-events: auto;
+	}
+
+	.animate {
+		animation: dash var(--animation-speed) linear infinite;
+	}
+
+	@keyframes dash {
+		to {
+			stroke-dashoffset: -1000;
+			stroke-dasharray: 100;
+		}
 	}
 </style>

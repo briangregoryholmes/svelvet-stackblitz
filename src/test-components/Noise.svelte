@@ -8,7 +8,7 @@
 	};
 
 	const initialData = {
-		num: 6.5
+		num: 0.5
 	};
 	const inputs = generateInput(initialData);
 	const procesor = (inputs: Inputs) => inputs.num;
@@ -18,7 +18,7 @@
 <Node useDefaults position={{ x: 320, y: 550 }} let:selected>
 	<NodeWrapper title="Noise" outputStore={output} key="noise">
 		<div class="node-body">
-			<Slider min={0} max={10} step={0.5} parameterStore={$inputs.num} />
+			<Slider min={0} max={1} fixed={2} step={0.01} parameterStore={$inputs.num} />
 		</div>
 	</NodeWrapper>
 </Node>

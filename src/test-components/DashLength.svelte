@@ -8,7 +8,7 @@
 	};
 
 	const initialData = {
-		length: 162,
+		length: 5,
 		type: 'medium'
 	};
 	const inputs = generateInput(initialData);
@@ -17,9 +17,9 @@
 </script>
 
 <Node useDefaults position={{ x: 40, y: 158 }} let:selected>
-	<NodeWrapper title="Dash Length" outputStore={output} key="dashFactor">
+	<NodeWrapper title="Dash Count" outputStore={output} key="dashFactor">
 		<div class="node-body">
-			<Slider min={0} max={200} step={0.05} parameterStore={$inputs.length} />
+			<Slider min={0} fixed={0} max={30} step={1} parameterStore={$inputs.length} />
 		</div>
 	</NodeWrapper>
 </Node>

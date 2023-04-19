@@ -18,7 +18,7 @@
 		strokeWidth: 2,
 		dashFactor: 10,
 		numCircles: 5,
-		spacing: 10,
+		spacing: 0,
 		color: 'red' as CSSColorString,
 		noise: 1
 	};

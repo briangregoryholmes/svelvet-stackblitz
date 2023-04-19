@@ -7,7 +7,7 @@
 	};
 
 	const initialData = {
-		width: 2.35
+		width: 2
 	};
 	const inputs = generateInput(initialData);
 	const procesor = (inputs: Inputs) => inputs.width;
@@ -18,7 +18,7 @@
 	<span class="note" id="custom">Custom Nodes</span>
 	<NodeWrapper title="Line Thickness" outputStore={output} key="strokeWidth">
 		<div class="node-body">
-			<Slider min={1.35} max={6} step={0.05} parameterStore={$inputs.width} />
+			<Slider min={1} max={12} fixed={1} step={0.1} parameterStore={$inputs.width} />
 		</div>
 	</NodeWrapper>
 </Node>
