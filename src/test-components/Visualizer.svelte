@@ -1,9 +1,9 @@
 <script lang="ts">
 	export let size = 200;
 	export let strokeWidth = 4;
-	export let dashFactor = 5;
-	export let numCircles = 30;
-	export let spacing = 0;
+	export let dashCount = 5;
+	export let scale = 30;
+	export let animation = 0;
 	export let color = 'red';
 	export let noise = 0; // Add noise parameter
 
@@ -17,41 +17,37 @@
 	}
 
 	let circles: Array<Circle> = [];
-	let previousNoiseFactor = 0;
-	let previousNoise = 0;
 	let dashLength;
 	let gapLength;
-	$: animate = spacing;
+	$: animate = animation;
 
 	$: {
-		circles = generateCircles(size, strokeWidth, dashFactor, numCircles, spacing, noise);
+		circles = generateCircles(size, strokeWidth, dashCount, scale, noise);
 	}
 
 	const random = Array(50)
 		.fill(null)
-		.map((_, i) => 1 - Math.random());
+		.map((_, i) => Math.random() - 0.5);
 
 	function generateCircles(
 		size: number,
 		strokeWidth: number,
 		dashFactor: number,
 		numCircles: number,
-		spacing: number,
 		noise: number
 	) {
 		let generatedCircles = [];
 
 		for (let i = 0; i < numCircles; i++) {
-			const noiseFactor = noise * random[i];
 			let radius = size * (i / numCircles) * 2;
 			let angle = 0;
 			let circumference = 2 * Math.PI * radius;
+
 			dashLength = circumference / dashFactor / 2;
 			gapLength = (circumference - dashLength) / (dashFactor - 1);
 
-			dashLength += random[i] * noise * 5;
+			dashLength += random[i] * noise * 15;
 			angle = 1440 * random[i] * noise;
-			// console.log({ angle, noiseFactor, i });
 			strokeWidth += (random[i] * noise) / 2;
 
 			let circle = {
@@ -59,14 +55,12 @@
 				cy: size / 2,
 				r: radius,
 				strokeWidth: strokeWidth,
-				dashArray: `${dashLength},${dashLength}`,
+				dashArray: `${dashLength + random[i] * noise * 5},${dashLength - random[i] * noise * 5}`,
 				angle
 			};
 
 			generatedCircles.push(circle);
-			radius += spacing;
 		}
-		previousNoise = noise;
 		return generatedCircles;
 	}
 </script>
@@ -77,11 +71,12 @@
 			cx="50%"
 			cy="50%"
 			r={circle.r}
-			style:--animation-speed={spacing + 's'}
+			style:--animation-speed={animation + 's'}
 			stroke={color}
 			style:transform-origin="50% 50%"
 			style:transform={`rotate(${circle.angle}deg)`}
 			fill="none"
+			style:--stroke-width={circle.strokeWidth + 'px'}
 			stroke-width={circle.strokeWidth}
 			stroke-dasharray={circle.dashArray}
 			class:animate
@@ -95,13 +90,25 @@
 	}
 
 	.animate {
-		animation: dash var(--animation-speed) linear infinite;
+		animation: dash var(--animation-speed) linear infinite,
+			pulse-width var(--animation-speed) linear infinite;
 	}
 
 	@keyframes dash {
 		to {
-			stroke-dashoffset: -1000;
-			stroke-dasharray: 100;
+			rotate: 360deg;
+		}
+	}
+
+	@keyframes pulse-width {
+		0% {
+			stroke-width: calc(var(--stroke-width));
+		}
+		50% {
+			stroke-width: calc(var(--stroke-width) * 2);
+		}
+		100% {
+			stroke-width: calc(var(--stroke-width));
 		}
 	}
 </style>

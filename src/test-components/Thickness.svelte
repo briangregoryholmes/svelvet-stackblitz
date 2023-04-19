@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Node, Anchor } from 'svelvet-test';
+	import { Node } from 'svelvet-test';
 	import { generateInput, generateOutput, Slider } from 'svelvet-test';
 	import NodeWrapper from './NodeWrapper.svelte';
 	type Inputs = {
@@ -7,7 +7,7 @@
 	};
 
 	const initialData = {
-		width: 2
+		width: 2.5
 	};
 	const inputs = generateInput(initialData);
 	const procesor = (inputs: Inputs) => inputs.width;

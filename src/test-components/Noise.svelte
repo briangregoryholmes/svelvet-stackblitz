@@ -8,7 +8,7 @@
 	};
 
 	const initialData = {
-		num: 0.5
+		num: 0.9
 	};
 	const inputs = generateInput(initialData);
 	const procesor = (inputs: Inputs) => inputs.num;

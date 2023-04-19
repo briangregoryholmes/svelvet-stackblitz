@@ -3,14 +3,13 @@
 	import { ThemeToggle, Group } from 'svelvet-test';
 	import Thickness from '../test-components/Thickness.svelte';
 	import Noise from '../test-components/Noise.svelte';
-	import NumCircles from '../test-components/NumCircles.svelte';
+	import Scale from '../test-components/Scale.svelte';
 	import CircleColor from '../test-components/CircleColor.svelte';
-	import DashLength from '../test-components/DashLength.svelte';
+	import DashCount from '../test-components/DashCount.svelte';
 	import Output from '../test-components/Output.svelte';
 
 	let theme: Theme = 'dark';
 	let zoom = 0.5;
-	let width: number;
 </script>
 
 <body>
@@ -24,9 +23,9 @@
 		>
 			<Thickness />
 			<Noise />
-			<NumCircles />
+			<Scale />
 			<CircleColor />
-			<DashLength />
+			<DashCount />
 		</Group>
 		<Output />
 		<span id="state" class="note"> Stateful Anchors</span>
@@ -37,13 +36,6 @@
 
 <style>
 	@import url('https://fonts.googleapis.com/css2?family=Reenie+Beanie&display=swap');
-	.wrapper {
-		display: flex;
-		border: solid 1px black;
-		border-radius: 20px;
-		overflow: hidden;
-		box-shadow: 0 0 40px 0 rgba(37, 37, 37, 0.5);
-	}
 	body {
 		display: flex;
 		justify-content: center;

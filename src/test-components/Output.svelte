@@ -7,18 +7,18 @@
 
 	type Inputs = {
 		strokeWidth: number;
-		dashFactor: number;
-		numCircles: number;
-		spacing: number;
+		dashCount: number;
+		scale: number;
+		animation: number;
 		color: CSSColorString;
 		noise: number;
 	};
 
 	const initialData = {
 		strokeWidth: 2,
-		dashFactor: 10,
-		numCircles: 5,
-		spacing: 0,
+		dashCount: 10,
+		scale: 5,
+		animation: 0,
 		color: 'red' as CSSColorString,
 		noise: 1
 	};
@@ -35,6 +35,23 @@
 				{#if key === 'color'}
 					<Anchor id={key} let:connecting let:linked inputsStore={inputs} {key} input locked>
 						<ColorAnchor color={$inputs[key]} {connecting} {linked} />
+					</Anchor>
+				{:else if key === 'animation'}
+					<Anchor
+						id={key}
+						on:disconnection={() => {
+							if ($inputs && typeof $inputs.animation.set === 'function') {
+								$inputs.animation.set(0);
+							}
+						}}
+						let:hovering
+						let:connecting
+						let:linked
+						inputsStore={inputs}
+						{key}
+						input
+					>
+						<CustomAnchor {hovering} {connecting} {linked} />
 					</Anchor>
 				{:else}
 					<Anchor id={key} let:hovering let:connecting let:linked inputsStore={inputs} {key} input>
