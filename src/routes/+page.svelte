@@ -9,34 +9,30 @@
 	import Output from '../test-components/Output.svelte';
 
 	let theme: Theme = 'dark';
-	let zoom = 0.6;
+	let zoom = 0.5;
 	let width: number;
-	// $: zoom = width / 1200;
 </script>
 
-<!-- <svelte:window bind:innerWidth={width} /> -->
 <body>
-	<div class="wrapper">
-		<Svelvet edgeStyle="step" TD width={800} {theme} height={500} {zoom} minimap controls>
-			<Group
-				position={{ x: -150, y: -100 }}
-				width={600}
-				height={700}
-				color="goldenrod"
-				groupName="parameters"
-			>
-				<Thickness />
-				<Noise />
-				<NumCircles />
-				<CircleColor />
-				<DashLength />
-			</Group>
-			<Output />
-			<span id="state" class="note"> Stateful Anchors</span>
-			<span id="groups" class="note">Group Boxes</span>
-			<ThemeToggle main="dark" alt="light" slot="toggle" />
-		</Svelvet>
-	</div>
+	<Svelvet edgeStyle="step" TD {theme} {zoom} minimap controls>
+		<Group
+			position={{ x: -150, y: -100 }}
+			width={600}
+			height={700}
+			color="goldenrod"
+			groupName="parameters"
+		>
+			<Thickness />
+			<Noise />
+			<NumCircles />
+			<CircleColor />
+			<DashLength />
+		</Group>
+		<Output />
+		<span id="state" class="note"> Stateful Anchors</span>
+		<span id="groups" class="note">Group Boxes</span>
+		<ThemeToggle main="dark" alt="light" slot="toggle" />
+	</Svelvet>
 </body>
 
 <style>
@@ -55,6 +51,8 @@
 		background-color: gray;
 		width: 100vw;
 		height: 100vh;
+		padding: 0;
+		margin: 0;
 	}
 	.note {
 		font-family: 'Reenie Beanie', sans-serif;
