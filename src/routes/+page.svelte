@@ -8,12 +8,11 @@
 	import DashCount from '../test-components/DashCount.svelte';
 	import Output from '../test-components/Output.svelte';
 
-	let theme: Theme = 'dark';
 	let zoom = 0.5;
 </script>
 
 <body>
-	<Svelvet edgeStyle="step" TD {theme} {zoom} minimap controls>
+	<Svelvet edgeStyle="step" TD {zoom} minimap controls>
 		<Group
 			position={{ x: -150, y: -100 }}
 			width={600}

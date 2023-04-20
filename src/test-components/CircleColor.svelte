@@ -17,11 +17,6 @@
 </script>
 
 <Node useDefaults rotation={-5} position={{ x: 50, y: 400 }} let:selected>
-	<p class="note" id="custom">
-		Built In
-		<br />
-		Components
-	</p>
 	<NodeWrapper title="Color">
 		<div class="node-body">
 			<ColorWheel parameterStore={$inputs.color} />
