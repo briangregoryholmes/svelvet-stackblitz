@@ -1,7 +1,7 @@
 <script lang="ts">
 	import NodeWrapper from './NodeWrapper.svelte';
 	import ColorAnchor from './ColorAnchor.svelte';
-	import { generateInput, generateOutput, Resizer, ColorWheel, Node, Anchor } from 'svelvet';
+	import { generateInput, generateOutput, Resizer, ColorPicker, Node, Anchor } from 'svelvet';
 	import type { CSSColorString } from 'svelvet';
 
 	type Inputs = {
@@ -24,7 +24,7 @@
 	</p>
 	<NodeWrapper title="Color">
 		<div class="node-body">
-			<ColorWheel parameterStore={$inputs.color} />
+			<ColorPicker parameterStore={$inputs.color} />
 		</div>
 		<div class="output-anchors">
 			<Anchor
