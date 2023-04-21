@@ -5,10 +5,16 @@
 	export let title: string;
 	export let outputStore: ReturnType<typeof generateOutput> | null = null;
 	export let key = '';
+	export let destroy: null | (() => void) = null;
 </script>
 
 <div class="node">
-	<h1>{title}</h1>
+	<div class="header">
+		<h1>{title}</h1>
+		{#if destroy}
+			<button class="destroy" on:click={destroy}>X</button>
+		{/if}
+	</div>
 	<slot />
 	{#if outputStore && key}
 		<div class="output-anchors">
@@ -49,7 +55,7 @@
 		display: flex;
 		align-items: center;
 		padding-bottom: 8px;
-		border-bottom: solid 1px white;
+
 		border-color: inherit;
 	}
 
@@ -60,5 +66,19 @@
 		display: flex;
 		flex-direction: column;
 		gap: 10px;
+	}
+	.destroy {
+		background: none;
+		border: none;
+		color: inherit;
+		cursor: pointer;
+	}
+	.header {
+		display: flex;
+		justify-content: space-between;
+		align-items: baseline;
+		width: 100%;
+		border-bottom: solid 1px;
+		border-color: lightgray;
 	}
 </style>
