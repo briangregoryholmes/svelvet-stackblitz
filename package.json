@@ -33,6 +33,6 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"svelvet": "^7.0.18"
+		"svelvet": "^7.0.19"
 	}
 }

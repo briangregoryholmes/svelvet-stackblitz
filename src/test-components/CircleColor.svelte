@@ -36,6 +36,7 @@
 				edgeStyle="bezier"
 				edgeColor={output}
 				edgeLabel="Dynamic Edges"
+				locked
 			>
 				<ColorAnchor color={output} {connecting} {linked} />
 			</Anchor>
