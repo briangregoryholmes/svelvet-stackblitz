@@ -16,28 +16,29 @@
 		{/if}
 	</div>
 	<slot />
-	{#if outputStore && key}
-		<div class="output-anchors">
-			<Anchor
-				id={key}
-				connections={[['output', key]]}
-				let:linked
-				let:connecting
-				let:hovering
-				{outputStore}
-				output
-			>
-				<CustomAnchor {hovering} {connecting} {linked} />
-			</Anchor>
-		</div>
-	{/if}
 </div>
+{#if outputStore && key}
+	<div class="output-anchors">
+		<Anchor
+			id={key}
+			connections={[['output', key]]}
+			let:linked
+			let:connecting
+			let:hovering
+			{outputStore}
+			output
+		>
+			<CustomAnchor {hovering} {connecting} {linked} />
+		</Anchor>
+	</div>
+{/if}
 
 <style>
 	.node {
 		box-sizing: border-box;
-		width: 220px;
+		width: fit-content;
 		border-radius: 8px;
+		height: fit-content;
 		position: relative;
 		pointer-events: auto;
 		display: flex;
@@ -54,7 +55,6 @@
 		display: flex;
 		align-items: center;
 		padding-bottom: 8px;
-
 		border-color: inherit;
 	}
 
